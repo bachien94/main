@@ -77,8 +77,8 @@ with st.sidebar:
     )
     st.markdown("---")
     st.markdown("### 📞 Liên hệ")
-    st.write("📧 Email: doiemcodon@gmail.com")
-    st.write("🌐 Website: Nowebsite")
+    st.write("📧 Email: bachien94@gmail.com")
+    st.write("🌐 Website: No_website")
 
 # ----------------- PHẦN TIÊU ĐỀ CHÍNH -----------------
 st.markdown('<div class="main-title">🚀 Chào Mừng Đến Với Cổng Công Cụ</div>', unsafe_allow_html=True)
@@ -121,6 +121,6 @@ with col2:
 # ----------------- PHẦN CHÂN TRANG (FOOTER) -----------------
 st.markdown("---")
 st.markdown(
-    "<p style='text-align: center; color: #9CA3AF; font-size: 0.9rem;'>© 2026 Designed & Developed with ❤️ using Streamlit</p>", 
+    "<p style='text-align: center; color: #9CA3AF; font-size: 0.9rem;'>© 2026 Designed & Developed with ❤️ bachien94@gmail.com</p>", 
     unsafe_allow_html=True
 )
