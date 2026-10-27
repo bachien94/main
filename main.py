@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Cấu hình trang với layout wide để tận dụng tối đa chiều rộng màn hình
+# Cấu hình trang với layout wide
 st.set_page_config(
     page_title="Trang Chủ - Cổng Công Cụ",
     page_icon="🚀",
@@ -8,68 +8,82 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Tùy chỉnh CSS Responsive để các card tự co dãn linh hoạt
+# Tùy chỉnh CSS khóa layout trong 1 trang duy nhất, chống tràn khi zoom
 st.markdown("""
     <style>
-    /* Tổng thể */
-    .main-title {
-        font-size: clamp(2rem, 4vw, 3rem); /* Tự động đổi kích thước chữ theo khung hình */
-        font-weight: bold;
-        color: #1E3A8A;
-        text-align: center;
-        margin-bottom: 10px;
-    }
-    .subtitle {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        color: #4B5563;
-        text-align: center;
-        margin-bottom: 40px;
-        padding: 0 15px;
-    }
+    /* Ẩn footer mặc định của Streamlit để tiết kiệm diện tích */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
     
-    /* Thiết kế Card linh hoạt tự co dãn */
-    .card {
-        background-color: #F8FAFC;
-        padding: 5% 6%;
-        border-radius: 12px;
-        border: 1px solid #E2E8F0;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        height: 100%; /* Giúp các card cùng chiều cao trong một hàng */
+    /* Khóa cứng chiều cao màn hình, chống cuộn trang */
+    html, body, [class*="st-"] {
+        max-height: 100vh;
+        overflow: hidden !important;
+    }
+
+    .main .block-container {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1rem !important;
+        max-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        transition: transform 0.2s, box-shadow 0.2s;
-        margin-bottom: 20px;
     }
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-    .card h2 {
-        font-size: clamp(1.2rem, 2vw, 1.6rem);
-        color: #1E293B;
-        margin-bottom: 15px;
-    }
-    .card p {
-        font-size: clamp(0.9rem, 1.5vw, 1rem);
-        color: #64748B;
-        line-height: 1.5;
-        flex-grow: 1;
+
+    /* Tiêu đề chính gọn gàng */
+    .main-title {
+        font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+        font-weight: 700;
+        color: #1E3A8A;
+        text-align: center;
+        margin-bottom: 4px;
     }
     
-    /* Responsive cho màn hình nhỏ (Mobile) */
-    @media (max-width: 768px) {
-        .card {
-            padding: 20px;
-            margin-bottom: 15px;
-        }
+    .subtitle {
+        font-size: clamp(0.85rem, 1.2vw, 1rem);
+        color: #4B5563;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    /* Card tự động co giãn theo khoảng trống còn lại của màn hình */
+    .card-container {
+        background-color: #F8FAFC;
+        padding: 16px;
+        border-radius: 10px;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.2s ease;
+    }
+    
+    .card-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .card-title {
+        font-size: clamp(1rem, 1.4vw, 1.25rem);
+        font-weight: 600;
+        color: #1E293B;
+        margin-bottom: 8px;
+    }
+    
+    .card-desc {
+        font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+        color: #64748B;
+        line-height: 1.4;
+        margin-bottom: 0;
     }
     </style>
 """, unsafe_allow_html=True)
 
 # ----------------- THANH BÊN (SIDEBAR) -----------------
 with st.sidebar:
-    st.image("https://img.icons8.com/color/96/source-code.png", width=70)
+    st.image("https://img.icons8.com/color/96/source-code.png", width=60)
     st.title("Về Tôi")
     st.info(
         "Cổng thông tin cá nhân tổng hợp các ứng dụng "
@@ -77,50 +91,49 @@ with st.sidebar:
     )
     st.markdown("---")
     st.markdown("### 📞 Liên hệ")
-    st.write("📧 Email: bachien94@gmail.com")
-    st.write("🌐 Website: No_website")
+    st.write("📧 Email: doiemcodon@gmail.com")
+    st.write("🌐 Website: Nowebsite")
 
 # ----------------- PHẦN TIÊU ĐỀ CHÍNH -----------------
 st.markdown('<div class="main-title">🚀 Chào Mừng Đến Với Cổng Công Cụ</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">Khám phá các ứng dụng và tiện ích hỗ trợ công việc của bạn được phát triển hoàn toàn linh hoạt.</div>', unsafe_allow_html=True)
 
-st.markdown("---")
+st.markdown("<hr style='margin: 5px 0 15px 0;'>", unsafe_allow_html=True)
 
 # ----------------- KHU VỰC HIỂN THỊ CÁC CÔNG CỤ -----------------
-# st.columns sẽ tự động chuyển từ 2 cột sang 1 cột khi màn hình nhỏ lại (mobile)
-col1, col2 = st.columns(2, gap="large")
+col1, col2 = st.columns(2, gap="medium")
 
 with col1:
     st.markdown("""
-        <div class="card">
+        <div class="card-container">
             <div>
-                <h2>🛠️ Úng dụng ghép giáo án theo thời khoá biểu</h2>
-                <p>
-                    Hỗ trợ ghép giáo án theo từng tiết (với giáo án đã tách ra từng tiết riêng biệt). Đảm bảo đúng định dạng theo quy định EDOC
-                </p>
+                <div class="card-title">🛠️ Ứng dụng ghép giáo án theo thời khoá biểu</div>
+                <div class="card-desc">
+                    Hỗ trợ ghép giáo án theo từng tiết (với giáo án đã tách ra từng tiết riêng biệt). Đảm bảo đúng định dạng theo quy định EDOC.
+                </div>
             </div>
         </div>
     """, unsafe_allow_html=True)
-    # Nút bấm tự động giãn full chiều rộng khung chứa
+    st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
     st.link_button("👉 Truy Cập Công Cụ 1", "https://congcugiaovien.streamlit.app/", use_container_width=True)
 
 with col2:
     st.markdown("""
-        <div class="card">
+        <div class="card-container">
             <div>
-                <h2>📊 Định dạng văn bản theo yêu cầu</h2>
-                <p>
-                    Hỗ trợ các chức năng định dạng văn bản cơ bản.
-                </p>
+                <div class="card-title">📊 Định dạng văn bản theo yêu cầu</div>
+                <div class="card-desc">
+                    Hỗ trợ các chức năng định dạng văn bản cơ bản, nhanh chóng và chính xác theo chuẩn văn bản hành chính.
+                </div>
             </div>
         </div>
     """, unsafe_allow_html=True)
-    # Nút bấm tự động giãn full chiều rộng khung chứa
+    st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
     st.link_button("👉 Truy Cập Công Cụ 2", "https://dinhdangvanban.streamlit.app/", use_container_width=True)
 
 # ----------------- PHẦN CHÂN TRANG (FOOTER) -----------------
-st.markdown("---")
+st.markdown("<hr style='margin: 15px 0 5px 0;'>", unsafe_allow_html=True)
 st.markdown(
-    "<p style='text-align: center; color: #9CA3AF; font-size: 0.9rem;'>© 2026 Designed & Developed with ❤️ bachien94@gmail.com</p>", 
+    "<p style='text-align: center; color: #9CA3AF; font-size: 0.8rem; margin: 0;'>© 2026 Designed & Developed with ❤️ using Streamlit</p>", 
     unsafe_allow_html=True
 )
